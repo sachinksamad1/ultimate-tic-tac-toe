@@ -1,4 +1,4 @@
-import { GameState, LocalBoard } from '../../types/index.js';
+import { GameState, LocalBoard } from '../types/index.js';
 
 export function createEmptyBoard(id: number): LocalBoard {
   return {
@@ -17,7 +17,7 @@ export function createEmptyGameState(matchId = 'test-match'): GameState {
     localBoards: Array(9).fill(null).map((_, i) => createEmptyBoard(i)),
     nextTargetBoard: null,
     activePlayer: 'X',
-    status: 'PLAYING',
+    status: 'WAITING',
     winner: null,
     history: []
   };

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { applyMove } from '../transitions.js';
-import { createEmptyGameState } from './factories.js';
+import { createEmptyGameState } from '../factories.js';
 import { Move } from '../../types/index.js';
 
 describe('transitions', () => {
