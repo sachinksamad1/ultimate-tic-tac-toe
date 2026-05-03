@@ -1,4 +1,4 @@
-import { PlayerSymbol, CellValue, LocalBoard } from '../types/index.js';
+import type { PlayerSymbol, CellValue, LocalBoard } from '../types/index.js';
 
 /**
  * Checks if a 3-element line is won by a single player.

@@ -10,9 +10,6 @@
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "bundler",
-    "module": "ESNext",
-    "paths": {
-      "shared": ["../../packages/shared/src/index.ts"]
-    }
+    "module": "ESNext"
   }
 }

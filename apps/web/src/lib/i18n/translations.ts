@@ -1,0 +1,90 @@
+import { writable, derived } from 'svelte/store';
+
+export type Language = 'en' | 'hi';
+
+export const translations = {
+  en: {
+    title: 'Ultimate Tic-Tac-Toe',
+    subtitle: 'A game of strategy and precision across 81 cells.',
+    multiplayer: 'Multiplayer',
+    singlePlayer: 'Single Player',
+    createMatch: 'Create Match',
+    joinMatch: 'Join Existing Match',
+    playVsBot: 'Play vs Bot',
+    easyBot: 'Easy Bot',
+    mediumBot: 'Medium Bot',
+    hardBot: 'Hard Bot',
+    matchIdPlaceholder: 'Enter Match ID',
+    join: 'Join',
+    or: 'OR',
+    quickRules: 'Quick Rules',
+    rule1: 'Win 3 local boards in a row to win the game.',
+    rule2: 'Your move sends your opponent to the corresponding local board.',
+    rule3: 'If sent to a won/full board, you get a Free Move anywhere!',
+    creating: 'Creating...',
+    youAre: 'You are',
+    yourTurn: 'YOUR TURN',
+    opponentsTurn: "Opponent's turn...",
+    matchId: 'Match ID',
+    copyId: 'Copy ID',
+    copied: 'Copied!',
+    loadingMatch: 'Loading match...',
+    waitingForOpponent: 'Waiting for Opponent...',
+    shareMatchId: 'Share this Match ID with a friend to start playing!',
+    orSendUrl: 'Or send them the current browser URL.',
+    victory: 'VICTORY!',
+    victoryDesc: 'You have conquered the board.',
+    draw: 'DRAW',
+    drawDesc: 'A hard-fought stalemate.',
+    defeat: 'DEFEAT',
+    defeatDesc: 'Better luck next time.',
+    returnToLobby: 'Return to Lobby',
+    createdBy: 'Created by',
+    forkOnGithub: 'Fork on GitHub'
+  },
+  hi: {
+    title: 'अल्टीमेट टिक-टैक-टो',
+    subtitle: '81 खानों में रणनीति और सटीकता का खेल।',
+    multiplayer: 'मल्टीप्लेयर',
+    singlePlayer: 'सिंगल प्लेयर',
+    createMatch: 'मैच बनाएँ',
+    joinMatch: 'मौजूदा मैच में शामिल हों',
+    playVsBot: 'बॉट के खिलाफ खेलें',
+    easyBot: 'आसान बॉट',
+    mediumBot: 'मध्यम बॉट',
+    hardBot: 'कठिन बॉट',
+    matchIdPlaceholder: 'मैच आईडी दर्ज करें',
+    join: 'शामिल हों',
+    or: 'या',
+    quickRules: 'त्वरित नियम',
+    rule1: 'गेम जीतने के लिए लगातार 3 स्थानीय बोर्ड जीतें।',
+    rule2: 'आपकी चाल आपके प्रतिद्वंद्वी को संबंधित स्थानीय बोर्ड पर भेजती है।',
+    rule3: 'यदि किसी जीते हुए/भरे हुए बोर्ड पर भेजा जाता है, तो आपको कहीं भी फ्री मूव मिलता है!',
+    creating: 'बनाया जा रहा है...',
+    youAre: 'आप हैं',
+    yourTurn: 'आपकी बारी',
+    opponentsTurn: 'प्रतिद्वंद्वी की बारी...',
+    matchId: 'मैच आईडी',
+    copyId: 'आईडी कॉपी करें',
+    copied: 'कॉपी हो गया!',
+    loadingMatch: 'मैच लोड हो रहा है...',
+    waitingForOpponent: 'प्रतिद्वंद्वी का इंतज़ार है...',
+    shareMatchId: 'खेलना शुरू करने के लिए अपने दोस्त के साथ यह मैच आईडी साझा करें!',
+    orSendUrl: 'या उन्हें वर्तमान ब्राउज़र यूआरएल भेजें।',
+    victory: 'विजय!',
+    victoryDesc: 'आपने बोर्ड जीत लिया है।',
+    draw: 'ड्रॉ',
+    drawDesc: 'एक कड़ा मुकाबला बराबरी पर छूटा।',
+    defeat: 'हार',
+    defeatDesc: 'अगली बार के लिए शुभकामनाएँ।',
+    returnToLobby: 'लॉबी में वापस जाएँ',
+    createdBy: 'द्वारा निर्मित',
+    forkOnGithub: 'गिटहब पर फोर्क करें'
+  }
+};
+
+export const locale = writable<Language>('en');
+
+export const t = derived(locale, ($locale) => (key: keyof typeof translations['en']) => {
+  return translations[$locale][key] || translations['en'][key];
+});

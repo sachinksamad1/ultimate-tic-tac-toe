@@ -1,4 +1,4 @@
-import { GameState, Move, PlayerSymbol } from '../types/index.js';
+import type { GameState, Move, PlayerSymbol } from '../types/index.js';
 
 /**
  * Validates if a move is legal according to the Ultimate Tic-Tac-Toe rules.

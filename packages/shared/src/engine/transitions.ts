@@ -1,4 +1,4 @@
-import { GameState, Move, PlayerSymbol, LocalBoard } from '../types/index.js';
+import type { GameState, Move, PlayerSymbol, LocalBoard } from '../types/index.js';
 import { checkLocalWin, checkGlobalWin } from './winConditions.js';
 
 /**

@@ -75,6 +75,10 @@ test(engine): add win condition test suite
 - All CI checks must pass (lint, test, typecheck)
 - Address all review comments before merge
 
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](./CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
 ## Project Structure
 
 ```

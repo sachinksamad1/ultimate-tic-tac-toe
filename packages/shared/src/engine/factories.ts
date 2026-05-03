@@ -1,4 +1,4 @@
-import { GameState, LocalBoard } from '../types/index.js';
+import type { GameState, LocalBoard } from '../types/index.js';
 
 export function createEmptyBoard(id: number): LocalBoard {
   return {

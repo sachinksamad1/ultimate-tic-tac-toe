@@ -17,15 +17,25 @@ export class MatchManager {
     return this.matches.get(matchId);
   }
 
-  joinMatch(matchId: string, player: Player): boolean {
+  joinMatch(matchId: string, player: Player): PlayerSymbol | null {
     const currentPlayers = this.players.get(matchId);
     if (!currentPlayers || currentPlayers.length >= 2) {
-      return false;
+      return null;
     }
     
     // Check if player is already in match
-    if (currentPlayers.some(p => p.id === player.id)) {
-      return true; 
+    const existingPlayer = currentPlayers.find(p => p.id === player.id);
+    if (existingPlayer) {
+      return existingPlayer.symbol; 
+    }
+
+    const takenSymbols = currentPlayers.map(p => p.symbol);
+    
+    if (player.symbol && (player.symbol === 'X' || player.symbol === 'O') && !takenSymbols.includes(player.symbol)) {
+      // Keep preferred symbol if available
+    } else {
+      // Assign available symbol
+      player.symbol = takenSymbols.includes('X') ? 'O' : 'X';
     }
 
     currentPlayers.push(player);
@@ -38,7 +48,7 @@ export class MatchManager {
       }
     }
     
-    return true;
+    return player.symbol;
   }
 
   getPlayers(matchId: string): Player[] {

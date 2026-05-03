@@ -15,6 +15,7 @@ The documentation is split into several sections for better clarity and maintain
 7.  **[07 - Testing](./architecture/07-testing.md)**: Testing strategy, coverage targets, test frameworks, and CI integration.
 8.  **[08 - Development Setup](./architecture/08-development-setup.md)**: Local development instructions, environment variables, and debugging guides.
 9.  **[09 - Troubleshooting](./architecture/09-troubleshooting.md)**: Common errors, FAQ, and debugging workflows.
+10. **[10 - Bot Architecture](./architecture/10-bot.md)**: Design and implementation details for the single-player AI opponent.
 
 ## Visual Diagrams
 
@@ -28,7 +29,8 @@ The implementation is broken down into structured tasks to track progress:
 -   **[Task 02: Game Engine](./task/02-game-engine.md)**
 -   **[Task 03: Multiplayer Backend](./task/03-multiplayer-backend.md)**
 -   **[Task 04: Frontend & UI](./task/04-frontend-ui.md)**
--   **[Task 05: Deployment & Launch](./task/05-launch.md)**
+-   **[Task 05: Single Player Bot](./task/05-single-player-bot.md)**
+-   **[Task 06: Deployment & Launch](./task/06-launch.md)**
 
 ## Getting Started
 
