@@ -2,12 +2,13 @@ import { writable } from 'svelte/store';
 import { io, Socket } from 'socket.io-client';
 import { browser } from '$app/environment';
 
+import { BACKEND_URL } from '$lib/constants';
+
 function createSocketStore() {
   const { subscribe, set } = writable<Socket | null>(null);
 
   if (browser) {
-    const backendUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
-    const socket = io(backendUrl, {
+    const socket = io(BACKEND_URL, {
       autoConnect: false,
       reconnection: true,
       reconnectionAttempts: 5,

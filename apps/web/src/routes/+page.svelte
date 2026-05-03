@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { t } from '$lib/i18n/translations';
+  import { BACKEND_URL } from '$lib/constants';
   import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
   import CreatorInfo from '$lib/components/CreatorInfo.svelte';
 
@@ -11,8 +12,7 @@
   async function createMatch() {
     isLoading = true;
     try {
-      const backendUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/matches`, {
+      const response = await fetch(`${BACKEND_URL}/api/matches`, {
         method: 'POST',
       });
       const match = await response.json();
@@ -27,8 +27,7 @@
   async function createBotMatch() {
     isLoading = true;
     try {
-      const backendUrl = import.meta.env.PUBLIC_BACKEND_URL || 'http://localhost:3001';
-      const response = await fetch(`${backendUrl}/api/matches/bot`, {
+      const response = await fetch(`${BACKEND_URL}/api/matches/bot`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ difficulty: selectedDifficulty })
