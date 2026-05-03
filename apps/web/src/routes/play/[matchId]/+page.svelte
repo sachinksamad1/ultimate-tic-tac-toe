@@ -87,10 +87,12 @@
   }
 
   function copyMatchId() {
-    navigator.clipboard.writeText(matchId).then(() => {
-      showCopied = true;
-      setTimeout(() => { showCopied = false; }, 2000);
-    });
+    if (matchId) {
+      navigator.clipboard.writeText(matchId).then(() => {
+        showCopied = true;
+        setTimeout(() => { showCopied = false; }, 2000);
+      });
+    }
   }
 </script>
 

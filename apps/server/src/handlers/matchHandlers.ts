@@ -1,7 +1,7 @@
 import { Server, Socket } from 'socket.io';
 import { MatchManager } from '../managers/MatchManager.js';
 import { BotManager } from '../managers/BotManager.js';
-import { isValidMove, applyMove, Player, Move } from 'shared';
+import { isValidMove, applyMove, Player, Move, PlayerSymbol } from 'shared';
 
 export function registerMatchHandlers(
   io: Server, 
@@ -37,7 +37,7 @@ export function registerMatchHandlers(
     }
   });
 
-  socket.on('make_move', ({ matchId, move, playerSymbol }: { matchId: string, move: Move, playerSymbol: any }) => {
+  socket.on('make_move', ({ matchId, move, playerSymbol }: { matchId: string, move: Move, playerSymbol: PlayerSymbol }) => {
     const state = matchManager.getMatch(matchId);
     
     if (!state) {

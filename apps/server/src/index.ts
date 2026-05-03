@@ -5,6 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
+import { PlayerSymbol } from 'shared';
 import { MatchManager } from './managers/MatchManager.js';
 import { BotManager } from './managers/BotManager.js';
 import { EasyBot, MediumBot, HardBot } from './bot/BotAI.js';
