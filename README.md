@@ -67,6 +67,26 @@ pnpm dev
 - **Frontend**: `http://localhost:5173`
 - **Backend**: `http://localhost:3001`
 
+## 🚀 Deployment
+
+The project is designed to be deployed as a split architecture:
+
+### 1. Backend (Railway)
+The stateful Node.js server is best hosted on **Railway** to support persistent WebSockets.
+- **Build Command**: `pnpm install && pnpm build`
+- **Start Command**: `pnpm --filter server start`
+- **Environment Variables**:
+  - `PORT`: (Automatically set by Railway)
+  - `FRONTEND_URL`: The URL of your deployed SvelteKit frontend.
+
+### 2. Frontend (Vercel)
+The SvelteKit frontend is optimized for **Vercel**.
+- **Build Command**: `pnpm install && pnpm build`
+- **Install Command**: `pnpm install`
+- **Output Directory**: `.svelte-kit` (or default Vercel SvelteKit detection)
+- **Environment Variables**:
+  - `PUBLIC_BACKEND_URL`: The URL of your deployed Railway server.
+
 ## 🤝 Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
