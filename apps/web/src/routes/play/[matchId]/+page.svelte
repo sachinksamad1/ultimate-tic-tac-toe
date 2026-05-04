@@ -11,6 +11,8 @@
   import CreatorInfo from '$lib/components/CreatorInfo.svelte';
   import type { Move, PlayerSymbol } from 'shared';
 
+  export let data;
+
   const matchId = $page.params.matchId;
   let error: string | null = null;
   let showCopied = false;
