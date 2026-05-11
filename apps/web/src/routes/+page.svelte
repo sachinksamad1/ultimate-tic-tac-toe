@@ -5,8 +5,6 @@
   import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
   import CreatorInfo from '$lib/components/CreatorInfo.svelte';
 
-  export let data;
-
   let matchIdToJoin = '';
   let isLoading = false;
   let selectedDifficulty = 'easy';
