@@ -10,8 +10,8 @@
 </script>
 
 <div class="global-board">
-  {#each state.localBoards as board, i}
-    <LocalBoard 
+  {#each state.localBoards as board, i (board.id || i)}
+    <LocalBoard
       {board}
       isActive={activeBoardIndex === null || activeBoardIndex === i}
       {disabled}

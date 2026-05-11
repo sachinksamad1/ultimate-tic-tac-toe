@@ -40,3 +40,11 @@ export interface GameState {
   winner: PlayerSymbol | 'DRAW' | null;
   history: Move[];
 }
+
+export interface IBotStrategy {
+  name: string;
+  calculateMove(
+    gameState: GameState,
+    botSymbol: PlayerSymbol,
+  ): Promise<{ boardIndex: number; cellX: number; cellY: number }>;
+}

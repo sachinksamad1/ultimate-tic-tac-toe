@@ -34,7 +34,7 @@ describe('MatchManager', () => {
 
     manager.joinMatch(state.matchId, player1);
     expect(manager.getMatch(state.matchId)?.status).toBe('WAITING');
-    
+
     manager.joinMatch(state.matchId, player2);
     expect(manager.getMatch(state.matchId)?.status).toBe('PLAYING');
   });
@@ -43,7 +43,7 @@ describe('MatchManager', () => {
     const state = manager.createMatch();
     manager.joinMatch(state.matchId, { id: '1', username: 'a', symbol: 'X' });
     manager.joinMatch(state.matchId, { id: '2', username: 'b', symbol: 'O' });
-    
+
     expect(manager.joinMatch(state.matchId, { id: '3', username: 'c', symbol: 'X' })).toBe(null);
   });
 

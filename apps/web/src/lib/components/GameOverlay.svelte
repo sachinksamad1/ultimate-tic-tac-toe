@@ -16,7 +16,9 @@
   function copyMatchId() {
     navigator.clipboard.writeText(matchId).then(() => {
       showCopied = true;
-      setTimeout(() => { showCopied = false; }, 2000);
+      setTimeout(() => {
+        showCopied = false;
+      }, 2000);
     });
   }
 </script>
@@ -27,7 +29,7 @@
       <div class="loader"></div>
       <h2>{$t('waitingForOpponent')}</h2>
       <p>{$t('shareMatchId')}</p>
-      
+
       <div class="match-display">
         <code>{matchId}</code>
         <button class="copy-btn" on:click={copyMatchId}>
@@ -51,7 +53,7 @@
         <h2 class="error">{$t('defeat')}</h2>
         <p>{$t('defeatDesc')}</p>
       {/if}
-      
+
       <button class="primary" on:click={onPlayAgain}>{$t('returnToLobby')}</button>
     </div>
   </div>
@@ -82,11 +84,21 @@
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
 
-  h2 { margin-top: 0; margin-bottom: 1rem; }
-  p { color: #666; margin-bottom: 2rem; }
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  p {
+    color: #666;
+    margin-bottom: 2rem;
+  }
 
-  .success { color: #10b981; }
-  .error { color: #ef4444; }
+  .success {
+    color: #10b981;
+  }
+  .error {
+    color: #ef4444;
+  }
 
   button.primary {
     background: #3b82f6;
@@ -114,8 +126,12 @@
   }
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .match-display {

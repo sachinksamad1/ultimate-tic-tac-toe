@@ -9,7 +9,7 @@ describe('transitions', () => {
     boardIndex: 0,
     cellX: 0,
     cellY: 0,
-    timestamp: new Date()
+    timestamp: new Date(),
   };
 
   it('updates cell value and switches player', () => {
@@ -34,7 +34,7 @@ describe('transitions', () => {
     // Setup 2 in a row
     state.localBoards[0].cells[0][0].value = 'X';
     state.localBoards[0].cells[0][1].value = 'X';
-    
+
     // Winning move
     const winningMove = { ...move, cellX: 2, cellY: 0 };
     const newState = applyMove(state, winningMove);
@@ -47,7 +47,7 @@ describe('transitions', () => {
     const state = createEmptyGameState();
     // Target board 4 is already won
     state.localBoards[4].winner = 'O';
-    
+
     // Move that would normally target board 4 (cell 1,1)
     const midMove = { ...move, cellX: 1, cellY: 1 };
     const newState = applyMove(state, midMove);
@@ -60,11 +60,11 @@ describe('transitions', () => {
     // Setup 2 local boards won
     state.globalBoard[0] = 'X';
     state.globalBoard[1] = 'X';
-    
+
     // Winning move for local board 2
     state.localBoards[2].cells[0][0].value = 'X';
     state.localBoards[2].cells[0][1].value = 'X';
-    
+
     const winningMove = { ...move, boardIndex: 2, cellX: 2, cellY: 0 };
     const newState = applyMove(state, winningMove);
 

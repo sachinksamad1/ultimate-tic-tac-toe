@@ -22,16 +22,20 @@ export class MatchManager {
     if (!currentPlayers || currentPlayers.length >= 2) {
       return null;
     }
-    
+
     // Check if player is already in match
-    const existingPlayer = currentPlayers.find(p => p.id === player.id);
+    const existingPlayer = currentPlayers.find((p) => p.id === player.id);
     if (existingPlayer) {
-      return existingPlayer.symbol; 
+      return existingPlayer.symbol;
     }
 
-    const takenSymbols = currentPlayers.map(p => p.symbol);
-    
-    if (player.symbol && (player.symbol === 'X' || player.symbol === 'O') && !takenSymbols.includes(player.symbol)) {
+    const takenSymbols = currentPlayers.map((p) => p.symbol);
+
+    if (
+      player.symbol &&
+      (player.symbol === 'X' || player.symbol === 'O') &&
+      !takenSymbols.includes(player.symbol)
+    ) {
       // Keep preferred symbol if available
     } else {
       // Assign available symbol
@@ -39,7 +43,7 @@ export class MatchManager {
     }
 
     currentPlayers.push(player);
-    
+
     // If it's the second player, start the game
     if (currentPlayers.length === 2) {
       const state = this.matches.get(matchId);
@@ -47,7 +51,7 @@ export class MatchManager {
         state.status = 'PLAYING';
       }
     }
-    
+
     return player.symbol;
   }
 

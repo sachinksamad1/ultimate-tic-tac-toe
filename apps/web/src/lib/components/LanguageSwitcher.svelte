@@ -3,7 +3,7 @@
 
   const languages: { code: Language; label: string; flag: string }[] = [
     { code: 'en', label: 'English', flag: '🇺🇸' },
-    { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' }
+    { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' },
   ];
 
   function toggleLanguage(code: Language) {
@@ -12,9 +12,9 @@
 </script>
 
 <div class="language-switcher">
-  {#each languages as lang}
-    <button 
-      class:active={$locale === lang.code} 
+  {#each languages as lang (lang.code)}
+    <button
+      class:active={$locale === lang.code}
       on:click={() => toggleLanguage(lang.code)}
       title={lang.label}
     >

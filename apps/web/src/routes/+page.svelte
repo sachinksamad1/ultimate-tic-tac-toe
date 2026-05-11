@@ -19,7 +19,7 @@
       });
       const match = await response.json();
       goto(`/play/${match.matchId}`);
-    } catch (e) {
+    } catch (_e) {
       alert('Failed to create match. Is the backend running?');
     } finally {
       isLoading = false;
@@ -32,11 +32,11 @@
       const response = await fetch(`${BACKEND_URL}/api/matches/bot`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ difficulty: selectedDifficulty })
+        body: JSON.stringify({ difficulty: selectedDifficulty }),
       });
       const match = await response.json();
       goto(`/play/${match.matchId}`);
-    } catch (e) {
+    } catch (_e) {
       alert('Failed to create bot match. Is the backend running?');
     } finally {
       isLoading = false;
@@ -93,9 +93,9 @@
     <section class="join">
       <h2>{$t('joinMatch')}</h2>
       <div class="input-group">
-        <input 
-          type="text" 
-          placeholder={$t('matchIdPlaceholder')} 
+        <input
+          type="text"
+          placeholder={$t('matchIdPlaceholder')}
           bind:value={matchIdToJoin}
           on:keydown={(e) => e.key === 'Enter' && joinMatch()}
         />
@@ -135,7 +135,7 @@
     justify-content: center;
     background: #f3f4f6;
     padding: 2rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   .hero {
@@ -259,8 +259,9 @@
     font-size: 0.875rem;
   }
 
-  .divider::before, .divider::after {
-    content: "";
+  .divider::before,
+  .divider::after {
+    content: '';
     flex: 1;
     height: 1px;
     background: #e5e7eb;
@@ -293,7 +294,9 @@
     line-height: 1.5;
   }
 
-  li { margin-bottom: 0.5rem; }
+  li {
+    margin-bottom: 0.5rem;
+  }
 
   button:disabled {
     opacity: 0.5;

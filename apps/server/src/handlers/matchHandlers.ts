@@ -4,27 +4,26 @@ import { BotManager } from '../managers/BotManager.js';
 import { isValidMove, applyMove, Player, Move, PlayerSymbol } from 'shared';
 
 export function registerMatchHandlers(
-  io: Server, 
-  socket: Socket, 
+  io: Server,
+  socket: Socket,
   matchManager: MatchManager,
-  botManager: BotManager
+  botManager: BotManager,
 ) {
-  
-  socket.on('join_match', ({ matchId, player }: { matchId: string, player: Player }) => {
+  socket.on('join_match', ({ matchId, player }: { matchId: string; player: Player }) => {
     const assignedSymbol = matchManager.joinMatch(matchId, player);
-    
+
     if (assignedSymbol) {
       socket.join(matchId);
       const state = matchManager.getMatch(matchId);
       const players = matchManager.getPlayers(matchId);
-      
+
       if (state) {
         // Explicitly tell THIS client which symbol they were assigned
         socket.emit('player_assigned', { symbol: assignedSymbol });
 
         // Notify everyone in the room about the new state
         io.to(matchId).emit('game_update', state);
-        
+
         if (players.length === 2) {
           io.to(matchId).emit('match_ready', { players });
         }
@@ -37,27 +36,38 @@ export function registerMatchHandlers(
     }
   });
 
-  socket.on('make_move', ({ matchId, move, playerSymbol }: { matchId: string, move: Move, playerSymbol: PlayerSymbol }) => {
-    const state = matchManager.getMatch(matchId);
-    
-    if (!state) {
-      socket.emit('error', { code: 'MATCH_NOT_FOUND', message: 'Match not found' });
-      return;
-    }
+  socket.on(
+    'make_move',
+    ({
+      matchId,
+      move,
+      playerSymbol,
+    }: {
+      matchId: string;
+      move: Move;
+      playerSymbol: PlayerSymbol;
+    }) => {
+      const state = matchManager.getMatch(matchId);
 
-    if (!isValidMove(state, move, playerSymbol)) {
-      socket.emit('error', { code: 'INVALID_MOVE', message: 'Move is not valid' });
-      return;
-    }
+      if (!state) {
+        socket.emit('error', { code: 'MATCH_NOT_FOUND', message: 'Match not found' });
+        return;
+      }
 
-    const newState = applyMove(state, move);
-    matchManager.updateMatch(matchId, newState);
-    
-    io.to(matchId).emit('game_update', newState);
+      if (!isValidMove(state, move, playerSymbol)) {
+        socket.emit('error', { code: 'INVALID_MOVE', message: 'Move is not valid' });
+        return;
+      }
 
-    // After human move, check if bot should move
-    botManager.handleStateUpdate(matchId, newState, io, matchManager);
-  });
+      const newState = applyMove(state, move);
+      matchManager.updateMatch(matchId, newState);
+
+      io.to(matchId).emit('game_update', newState);
+
+      // After human move, check if bot should move
+      botManager.handleStateUpdate(matchId, newState, io, matchManager);
+    },
+  );
 
   socket.on('disconnect', () => {
     // Basic cleanup: find matches this socket was in

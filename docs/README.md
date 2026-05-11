@@ -25,18 +25,19 @@ See **[Architecture Diagrams](./diagrams.md)** for Mermaid diagrams covering sys
 
 The implementation is broken down into structured tasks to track progress:
 
--   **[Task 01: Infrastructure](./task/01-infrastructure.md)**
--   **[Task 02: Game Engine](./task/02-game-engine.md)**
--   **[Task 03: Multiplayer Backend](./task/03-multiplayer-backend.md)**
--   **[Task 04: Frontend & UI](./task/04-frontend-ui.md)**
--   **[Task 05: Single Player Bot](./task/05-single-player-bot.md)**
--   **[Task 06: Deployment & Launch](./task/06-launch.md)**
+- **[Task 01: Infrastructure](./task/01-infrastructure.md)**
+- **[Task 02: Game Engine](./task/02-game-engine.md)**
+- **[Task 03: Multiplayer Backend](./task/03-multiplayer-backend.md)**
+- **[Task 04: Frontend & UI](./task/04-frontend-ui.md)**
+- **[Task 05: Single Player Bot](./task/05-single-player-bot.md)**
+- **[Task 06: Deployment & Launch](./task/06-launch.md)**
 
 ## Getting Started
 
 See **[Development Setup](./architecture/08-development-setup.md)** for full local development instructions.
 
 Quick start:
+
 ```bash
 git clone <repository-url>
 cd ultimate-tic-tac-toe
@@ -46,8 +47,8 @@ pnpm dev
 
 ## Deployment
 
--   **Frontend**: Automatically deployed to Vercel.
--   **Backend**: Automatically deployed to Railway.
+- **Frontend**: Automatically deployed to Vercel.
+- **Backend**: Automatically deployed to Railway.
 
 ## Contributing
 

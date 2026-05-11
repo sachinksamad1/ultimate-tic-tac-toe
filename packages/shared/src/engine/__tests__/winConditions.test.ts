@@ -24,7 +24,7 @@ describe('winConditions', () => {
       const cells = [
         ['X', 'X', 'X'],
         [null, 'O', null],
-        [null, null, 'O']
+        [null, null, 'O'],
       ] as any;
       expect(checkLocalWin(cells)).toBe('X');
     });
@@ -33,7 +33,7 @@ describe('winConditions', () => {
       const cells = [
         ['O', 'X', null],
         ['O', null, 'X'],
-        ['O', null, null]
+        ['O', null, null],
       ] as any;
       expect(checkLocalWin(cells)).toBe('O');
     });
@@ -42,7 +42,7 @@ describe('winConditions', () => {
       const cells = [
         ['X', null, null],
         [null, 'X', null],
-        [null, null, 'X']
+        [null, null, 'X'],
       ] as any;
       expect(checkLocalWin(cells)).toBe('X');
     });
@@ -51,7 +51,7 @@ describe('winConditions', () => {
       const cells = [
         ['X', 'O', 'X'],
         ['X', 'O', 'O'],
-        ['O', 'X', 'X']
+        ['O', 'X', 'X'],
       ] as any;
       expect(checkLocalWin(cells)).toBe('DRAW');
     });
@@ -60,7 +60,7 @@ describe('winConditions', () => {
       const cells = [
         ['X', 'O', null],
         [null, null, null],
-        [null, null, null]
+        [null, null, null],
       ] as any;
       expect(checkLocalWin(cells)).toBe(null);
     });
@@ -69,27 +69,45 @@ describe('winConditions', () => {
   describe('checkGlobalWin', () => {
     it('detects global win across local board winners', () => {
       const globalBoard: (PlayerSymbol | 'DRAW' | null)[] = [
-        'X', 'X', 'X',
-        'O', null, null,
-        null, 'O', null
+        'X',
+        'X',
+        'X',
+        'O',
+        null,
+        null,
+        null,
+        'O',
+        null,
       ];
       expect(checkGlobalWin(globalBoard)).toBe('X');
     });
 
     it('ignores DRAWs for winning lines', () => {
       const globalBoard: (PlayerSymbol | 'DRAW' | null)[] = [
-        'X', 'DRAW', 'X',
-        null, null, null,
-        null, null, null
+        'X',
+        'DRAW',
+        'X',
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
       ];
       expect(checkGlobalWin(globalBoard)).toBe(null);
     });
 
     it('detects global draw when all boards resolved', () => {
       const globalBoard: (PlayerSymbol | 'DRAW' | null)[] = [
-        'X', 'O', 'X',
-        'X', 'O', 'O',
-        'O', 'X', 'DRAW'
+        'X',
+        'O',
+        'X',
+        'X',
+        'O',
+        'O',
+        'O',
+        'X',
+        'DRAW',
       ];
       expect(checkGlobalWin(globalBoard)).toBe('DRAW');
     });

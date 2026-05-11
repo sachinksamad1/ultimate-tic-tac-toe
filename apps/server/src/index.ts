@@ -10,6 +10,7 @@ import { MatchManager } from './managers/MatchManager.js';
 import { BotManager } from './managers/BotManager.js';
 import { EasyBot, MediumBot, HardBot } from './bot/BotAI.js';
 import { registerMatchHandlers } from './handlers/matchHandlers.js';
+import { z } from 'zod';
 
 dotenv.config();
 
@@ -56,9 +57,18 @@ app.post('/api/matches', (req, res) => {
 });
 
 app.post('/api/matches/bot', (req, res) => {
-  const { difficulty } = req.body;
+  const schema = z.object({
+    difficulty: z.enum(['easy', 'medium', 'hard']).default('easy'),
+  });
+
+  const result = schema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ error: 'Invalid difficulty level' });
+  }
+
+  const { difficulty } = result.data;
   const state = matchManager.createMatch();
-  
+
   let botAI;
   if (difficulty === 'hard') {
     botAI = new HardBot(4);
@@ -72,7 +82,7 @@ app.post('/api/matches/bot', (req, res) => {
   const assignedSymbol = matchManager.joinMatch(state.matchId, {
     id: 'bot-id',
     username: `${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Bot`,
-    symbol: 'O' // Preferred, but MatchManager decides
+    symbol: 'O', // Preferred, but MatchManager decides
   }) as PlayerSymbol;
 
   botManager.registerBot(state.matchId, botAI, assignedSymbol);

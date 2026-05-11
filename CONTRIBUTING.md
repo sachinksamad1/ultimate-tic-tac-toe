@@ -11,13 +11,13 @@ Thank you for your interest in contributing! This guide covers the workflow and 
 
 ## Branch Naming
 
-| Type | Format | Example |
-|------|--------|---------|
-| Feature | `feature/description` | `feature/dark-mode` |
-| Bug fix | `bugfix/description` | `bugfix/free-move-validation` |
-| Documentation | `docs/description` | `docs/add-security-docs` |
-| Refactor | `refactor/description` | `refactor/extract-game-engine` |
-| Chores | `chore/description` | `chore/update-dependencies` |
+| Type          | Format                 | Example                        |
+| ------------- | ---------------------- | ------------------------------ |
+| Feature       | `feature/description`  | `feature/dark-mode`            |
+| Bug fix       | `bugfix/description`   | `bugfix/free-move-validation`  |
+| Documentation | `docs/description`     | `docs/add-security-docs`       |
+| Refactor      | `refactor/description` | `refactor/extract-game-engine` |
+| Chores        | `chore/description`    | `chore/update-dependencies`    |
 
 ## Commit Messages
 
@@ -34,6 +34,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 Examples:
+
 ```
 feat(engine): add free move validation logic
 fix(backend): correct nextTargetBoard calculation after local win
@@ -51,6 +52,7 @@ test(engine): add win condition test suite
 ## Pull Request Process
 
 ### Before Submitting
+
 - [ ] All tests pass: `pnpm test`
 - [ ] Linting passes: `pnpm lint`
 - [ ] Type checking passes: `pnpm typecheck`
@@ -58,19 +60,24 @@ test(engine): add win condition test suite
 - [ ] Commits follow conventional commit format
 
 ### PR Template
+
 ```markdown
 ## Summary
+
 - What changed and why
 
 ## Testing
+
 - How was this tested
 - Screenshots if UI changed
 
 ## Notes
+
 - Any caveats, follow-up work, or breaking changes
 ```
 
 ### Review Requirements
+
 - At least 1 approval required
 - All CI checks must pass (lint, test, typecheck)
 - Address all review comments before merge
@@ -95,6 +102,7 @@ ultimate-tic-tac-toe/
 ## Reporting Issues
 
 When filing a bug report, include:
+
 - Steps to reproduce
 - Expected vs actual behavior
 - Browser and OS

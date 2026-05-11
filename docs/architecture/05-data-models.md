@@ -1,11 +1,13 @@
 # 05 - Data Models & Domain Entities
 
 ## Overview
+
 This document defines the core data structures used throughout the application. These models are shared between the SvelteKit frontend and the Node.js backend to ensure consistency.
 
 ## Core Domain Models (TypeScript)
 
 ### Player
+
 ```typescript
 type PlayerSymbol = 'X' | 'O';
 
@@ -17,6 +19,7 @@ interface Player {
 ```
 
 ### Game Cell
+
 ```typescript
 type CellValue = PlayerSymbol | null;
 
@@ -28,6 +31,7 @@ interface Cell {
 ```
 
 ### Local Board
+
 ```typescript
 interface LocalBoard {
   id: number; // 0-8
@@ -37,6 +41,7 @@ interface LocalBoard {
 ```
 
 ### Global Game State
+
 ```typescript
 interface GameState {
   matchId: string;
@@ -51,6 +56,7 @@ interface GameState {
 ```
 
 ### Move
+
 ```typescript
 interface Move {
   playerId: string;
@@ -62,6 +68,7 @@ interface Move {
 ```
 
 ## Database Schema (Optional/Persistent)
+
 If a database is implemented (e.g., PostgreSQL on Railway), the following tables would be used:
 
 1.  **Users**: `id`, `username`, `email`, `password_hash`, `elo_rating`, `games_played`, `wins`.
@@ -69,5 +76,6 @@ If a database is implemented (e.g., PostgreSQL on Railway), the following tables
 3.  **MoveHistory**: `match_id`, `player_id`, `move_data` (JSON), `move_order`.
 
 ## Serialization
--   All data transmitted via WebSockets is serialized as JSON.
--   The `GameState` is optimized to only send diffs or the minimal required data to reduce bandwidth, although for Tic-Tac-Toe, sending the full object is usually acceptable.
+
+- All data transmitted via WebSockets is serialized as JSON.
+- The `GameState` is optimized to only send diffs or the minimal required data to reduce bandwidth, although for Tic-Tac-Toe, sending the full object is usually acceptable.

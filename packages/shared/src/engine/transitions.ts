@@ -1,4 +1,4 @@
-import type { GameState, Move, PlayerSymbol, LocalBoard } from '../types/index.js';
+import { GameState, Move } from '../types/index.js';
 import { checkLocalWin, checkGlobalWin } from './winConditions.js';
 
 /**
@@ -15,7 +15,7 @@ export function applyMove(state: GameState, move: Move): GameState {
   localBoard.cells[move.cellY][move.cellX].value = activeSymbol;
 
   // 3. Update local board status
-  const localWinner = checkLocalWin(localBoard.cells.map(row => row.map(c => c.value)));
+  const localWinner = checkLocalWin(localBoard.cells.map((row) => row.map((c) => c.value)));
   if (localWinner) {
     localBoard.winner = localWinner;
     newState.globalBoard[move.boardIndex] = localWinner;
@@ -32,7 +32,7 @@ export function applyMove(state: GameState, move: Move): GameState {
   // The next local board index is determined by the cell coordinates (3*y + x)
   const nextIdx = move.cellY * 3 + move.cellX;
   const nextTargetBoard = newState.localBoards[nextIdx];
-  
+
   // If the next target board is already won or full, it's a "Free Move"
   if (nextTargetBoard.winner !== null) {
     newState.nextTargetBoard = null;

@@ -17,24 +17,24 @@ A fullstack, real-time multiplayer implementation of the **Ultimate Tic-Tac-Toe*
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology | Rationale |
-|-------|-----------|-----------|
-| **Frontend** | [SvelteKit](https://kit.svelte.dev/) | Reactive stores and excellent developer experience. |
-| **Backend** | [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/) | Robust stateful environment for game sessions. |
-| **Real-time** | [Socket.io](https://socket.io/) | Reliable bi-directional WebSocket communication. |
-| **Monorepo** | [Turborepo](https://turbo.build/) + [pnpm](https://pnpm.io/) | Efficient build pipeline and workspace management. |
-| **Testing** | [Vitest](https://vitest.dev/) | Fast and modern unit/integration testing. |
+| Layer         | Technology                                                         | Rationale                                           |
+| ------------- | ------------------------------------------------------------------ | --------------------------------------------------- |
+| **Frontend**  | [SvelteKit](https://kit.svelte.dev/)                               | Reactive stores and excellent developer experience. |
+| **Backend**   | [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/) | Robust stateful environment for game sessions.      |
+| **Real-time** | [Socket.io](https://socket.io/)                                    | Reliable bi-directional WebSocket communication.    |
+| **Monorepo**  | [Turborepo](https://turbo.build/) + [pnpm](https://pnpm.io/)       | Efficient build pipeline and workspace management.  |
+| **Testing**   | [Vitest](https://vitest.dev/)                                      | Fast and modern unit/integration testing.           |
 
 ## 🗺️ Project Roadmap
 
-| Phase | Description | Status |
-|-------|-------------|--------|
-| **01** | Infrastructure & Shared Foundations | ✅ Complete |
-| **02** | Core Game Engine & Win Logic | ✅ Complete |
-| **03** | Multiplayer Backend (Socket.io) | ✅ Complete |
-| **04** | Frontend UI & Reactive Stores | ✅ Complete |
-| **05** | Single Player Bot Integration | ✅ Complete |
-| **06** | Deployment & Launch | 🚧 In Progress |
+| Phase  | Description                         | Status         |
+| ------ | ----------------------------------- | -------------- |
+| **01** | Infrastructure & Shared Foundations | ✅ Complete    |
+| **02** | Core Game Engine & Win Logic        | ✅ Complete    |
+| **03** | Multiplayer Backend (Socket.io)     | ✅ Complete    |
+| **04** | Frontend UI & Reactive Stores       | ✅ Complete    |
+| **05** | Single Player Bot Integration       | ✅ Complete    |
+| **06** | Deployment & Launch                 | 🚧 In Progress |
 
 ## 📖 Documentation
 
@@ -48,10 +48,12 @@ Detailed documentation is available in the [`/docs`](./docs) directory:
 ## 🏁 Quick Start
 
 ### Prerequisites
+
 - **Node.js** v24+
 - **pnpm** v10+
 
 ### Installation & Run
+
 ```bash
 # Clone the repository
 git clone https://github.com/sachinksamad1/ultimate-tic-tac-toe.git
@@ -72,7 +74,9 @@ pnpm dev
 The project is designed to be deployed as a split architecture:
 
 ### 1. Backend (Railway)
+
 The stateful Node.js server is best hosted on **Railway** to support persistent WebSockets.
+
 - **Build Command**: `pnpm install && pnpm build`
 - **Start Command**: `pnpm --filter server start`
 - **Environment Variables**:
@@ -80,7 +84,9 @@ The stateful Node.js server is best hosted on **Railway** to support persistent 
   - `FRONTEND_URL`: The URL of your deployed SvelteKit frontend.
 
 ### 2. Frontend (Vercel)
+
 The SvelteKit frontend is optimized for **Vercel**.
+
 - **Build Command**: `pnpm install && pnpm build`
 - **Install Command**: `pnpm install`
 - **Output Directory**: `.svelte-kit` (or default Vercel SvelteKit detection)
@@ -112,4 +118,5 @@ Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more informati
 - Repo: [ultimate-tic-tac-toe](https://github.com/sachinksamad1/ultimate-tic-tac-toe)
 
 ---
+
 Built with ❤️ by [Sachin K Samad](https://github.com/sachinksamad1)

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
   import { socketStore } from '$lib/stores/socket';
@@ -16,7 +16,7 @@
   const matchId = $page.params.matchId;
   let error: string | null = null;
   let showCopied = false;
-  
+
   // Persistent player ID for the session
   const playerId = Math.random().toString(36).substr(2, 9);
 
@@ -28,12 +28,12 @@
 
       socket.on('connect', () => {
         console.log('Connected to socket');
-        const player = { 
-          id: playerId, 
+        const player = {
+          id: playerId,
           username: `Player_${Math.floor(Math.random() * 1000)}`,
-          symbol: 'X' as PlayerSymbol // Symbol is now assigned by server
+          symbol: 'X' as PlayerSymbol, // Symbol is now assigned by server
         };
-        
+
         socket.emit('join_match', { matchId, player });
       });
 
@@ -52,7 +52,9 @@
 
       socket.on('error', (err: any) => {
         error = err.message;
-        setTimeout(() => { error = null; }, 5000);
+        setTimeout(() => {
+          error = null;
+        }, 5000);
       });
     });
 
@@ -67,19 +69,19 @@
     if (!$isMyTurn || !$gameStore) return;
 
     const move: Move = {
-      playerId, 
+      playerId,
       boardIndex,
       cellX,
       cellY,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
     const socket = $socketStore;
     if (socket) {
-      socket.emit('make_move', { 
-        matchId, 
-        move, 
-        playerSymbol: $mySymbol 
+      socket.emit('make_move', {
+        matchId,
+        move,
+        playerSymbol: $mySymbol,
       });
     }
   }
@@ -92,7 +94,9 @@
     if (matchId) {
       navigator.clipboard.writeText(matchId).then(() => {
         showCopied = true;
-        setTimeout(() => { showCopied = false; }, 2000);
+        setTimeout(() => {
+          showCopied = false;
+        }, 2000);
       });
     }
   }
@@ -129,17 +133,13 @@
 
   <main>
     {#if $gameStore}
-      <GlobalBoard 
-        state={$gameStore} 
-        disabled={!$isMyTurn} 
-        onMove={handleMove}
-      />
-      
-      <GameOverlay 
-        status={$gameStore.status} 
+      <GlobalBoard state={$gameStore} disabled={!$isMyTurn} onMove={handleMove} />
+
+      <GameOverlay
+        status={$gameStore.status}
         winner={$gameStore.winner}
         mySymbol={$mySymbol}
-        matchId={matchId}
+        {matchId}
         onPlayAgain={handlePlayAgain}
       />
     {:else}
@@ -168,7 +168,8 @@
     align-items: center;
     background: #f9fafb;
     padding: 1rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
   .header-actions {
@@ -184,8 +185,8 @@
     max-width: 600px;
   }
 
-  h1 { 
-    margin: 0 0 1rem 0; 
+  h1 {
+    margin: 0 0 1rem 0;
     color: #111827;
     font-size: 1.875rem;
     font-weight: 800;
@@ -198,7 +199,7 @@
     background: #fff;
     padding: 0.75rem 1.25rem;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .your-turn {
@@ -208,9 +209,15 @@
   }
 
   @keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.6; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   main {
@@ -236,8 +243,14 @@
   }
 
   @keyframes slideDown {
-    from { transform: translateY(-100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   footer {
@@ -258,7 +271,7 @@
     background: #fff;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
   .copy-btn {

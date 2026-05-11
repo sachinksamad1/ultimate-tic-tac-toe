@@ -22,11 +22,16 @@
 >
   {#if value === 'X'}
     <svg viewBox="0 0 24 24" class="mark">
-      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path
+        d="M18 6L6 18M6 6l12 12"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+      />
     </svg>
   {:else if value === 'O'}
     <svg viewBox="0 0 24 24" class="mark">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" fill="none"/>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" fill="none" />
     </svg>
   {/if}
 </button>
@@ -41,7 +46,9 @@
     justify-content: center;
     padding: 15%;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    transition:
+      background 0.2s,
+      transform 0.1s;
     width: 100%;
     height: 100%;
     box-sizing: border-box;

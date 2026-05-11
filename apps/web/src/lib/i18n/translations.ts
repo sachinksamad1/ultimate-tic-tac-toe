@@ -40,7 +40,7 @@ export const translations = {
     defeatDesc: 'Better luck next time.',
     returnToLobby: 'Return to Lobby',
     createdBy: 'Created by',
-    forkOnGithub: 'Fork on GitHub'
+    forkOnGithub: 'Fork on GitHub',
   },
   hi: {
     title: 'अल्टीमेट टिक-टैक-टो',
@@ -79,12 +79,12 @@ export const translations = {
     defeatDesc: 'अगली बार के लिए शुभकामनाएँ।',
     returnToLobby: 'लॉबी में वापस जाएँ',
     createdBy: 'द्वारा निर्मित',
-    forkOnGithub: 'गिटहब पर फोर्क करें'
-  }
+    forkOnGithub: 'गिटहब पर फोर्क करें',
+  },
 };
 
 export const locale = writable<Language>('en');
 
-export const t = derived(locale, ($locale) => (key: keyof typeof translations['en']) => {
+export const t = derived(locale, ($locale) => (key: keyof (typeof translations)['en']) => {
   return translations[$locale][key] || translations['en'][key];
 });

@@ -2,16 +2,17 @@
 
 ## Prerequisites
 
-| Requirement | Version | Notes |
-|-------------|---------|-------|
-| Node.js | v24+ or latest lts | Use nvm or vfox for version management |
-| pnpm | v10+ or latest | Required for workspace management |
-| Git | latest | For version control and CI/CD |
-| Code Editor | Any | Neovim |
+| Requirement | Version            | Notes                                  |
+| ----------- | ------------------ | -------------------------------------- |
+| Node.js     | v24+ or latest lts | Use nvm or vfox for version management |
+| pnpm        | v10+ or latest     | Required for workspace management      |
+| Git         | latest             | For version control and CI/CD          |
+| Code Editor | Any                | Neovim                                 |
 
 ## Quick Start
 
 ### 1. Clone and Install
+
 ```bash
 git clone https://github.com/sachinksamad1/ultimate-tic-tac-toe.git
 cd ultimate-tic-tac-toe
@@ -21,6 +22,7 @@ pnpm install
 ### 2. Configure Environment Variables
 
 **Backend** (`apps/server/.env`):
+
 ```env
 PORT=3001
 FRONTEND_URL=http://localhost:5173
@@ -29,6 +31,7 @@ LOG_LEVEL=debug
 ```
 
 **Frontend** (`apps/web/.env`):
+
 ```env
 PUBLIC_BACKEND_URL=http://localhost:3001
 ```
@@ -63,24 +66,25 @@ ultimate-tic-tac-toe/
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Start all apps in dev mode |
-| `pnpm dev:server` | Start backend only |
-| `pnpm dev:web` | Start frontend only |
-| `pnpm build` | Build all apps for production |
-| `pnpm build:server` | Build backend only |
-| `pnpm build:web` | Build frontend only |
-| `pnpm test` | Run all tests |
-| `pnpm test:watch` | Run tests in watch mode |
-| `pnpm test:e2e` | Run E2E tests |
-| `pnpm lint` | Lint all packages |
-| `pnpm format` | Format all code with Prettier |
-| `pnpm typecheck` | Run TypeScript type checking |
+| Command             | Description                   |
+| ------------------- | ----------------------------- |
+| `pnpm dev`          | Start all apps in dev mode    |
+| `pnpm dev:server`   | Start backend only            |
+| `pnpm dev:web`      | Start frontend only           |
+| `pnpm build`        | Build all apps for production |
+| `pnpm build:server` | Build backend only            |
+| `pnpm build:web`    | Build frontend only           |
+| `pnpm test`         | Run all tests                 |
+| `pnpm test:watch`   | Run tests in watch mode       |
+| `pnpm test:e2e`     | Run E2E tests                 |
+| `pnpm lint`         | Lint all packages             |
+| `pnpm format`       | Format all code with Prettier |
+| `pnpm typecheck`    | Run TypeScript type checking  |
 
 ## Debugging
 
 ### Backend Debugging
+
 ```bash
 # Start with Node inspector
 pnpm dev:server --inspect
@@ -90,6 +94,7 @@ chrome://inspect
 ```
 
 ### Frontend Debugging
+
 - Install **Svelte DevTools** browser extension
 - Use browser DevTools Network tab to inspect WebSocket frames
 - Enable verbose Socket.io client logging:
@@ -99,6 +104,7 @@ chrome://inspect
   ```
 
 ### WebSocket Debugging
+
 - Use the **ws** extension for VS Code to inspect connections
 - Monitor Socket.io events in browser console with debug enabled
 - Backend logs all connection events at `LOG_LEVEL=debug`
@@ -106,6 +112,7 @@ chrome://inspect
 ## Common Issues
 
 ### Port Already in Use
+
 ```bash
 # Find process using port
 lsof -i :3001
@@ -116,6 +123,7 @@ kill -9 <PID>
 ```
 
 ### pnpm Workspace Not Resolving
+
 ```bash
 pnpm install --force
 rm -rf node_modules apps/*/node_modules packages/*/node_modules
@@ -123,6 +131,7 @@ pnpm install
 ```
 
 ### TypeScript Errors in Shared Package
+
 ```bash
 pnpm --filter shared build
 pnpm typecheck

@@ -15,7 +15,7 @@ describe('BotManager', () => {
     matchManager = new MatchManager();
     mockIo = {
       to: vi.fn().mockReturnThis(),
-      emit: vi.fn()
+      emit: vi.fn(),
     };
   });
 
@@ -27,7 +27,7 @@ describe('BotManager', () => {
     const state = matchManager.createMatch();
     state.status = 'PLAYING';
     state.activePlayer = 'O'; // Bot's turn
-    
+
     const bot = new EasyBot();
     botManager.registerBot(state.matchId, bot, 'O');
 
@@ -53,7 +53,7 @@ describe('BotManager', () => {
     const state = matchManager.createMatch();
     state.status = 'PLAYING';
     state.activePlayer = 'X'; // Human's turn
-    
+
     const bot = new EasyBot();
     botManager.registerBot(state.matchId, bot, 'O');
 

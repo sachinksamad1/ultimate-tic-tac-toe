@@ -27,33 +27,40 @@ export class BotManager {
     matchId: string,
     state: GameState,
     io: Server,
-    matchManager: MatchManager
+    matchManager: MatchManager,
   ) {
     const botConfig = this.bots.get(matchId);
     if (!botConfig) return;
 
     if (state.status === 'PLAYING' && state.activePlayer === botConfig.symbol) {
       // Simulate "thinking" time
-      setTimeout(async () => {
-        try {
-          const latestState = matchManager.getMatch(matchId);
-          if (!latestState || latestState.status !== 'PLAYING' || latestState.activePlayer !== botConfig.symbol) {
-            return;
+      setTimeout(
+        async () => {
+          try {
+            const latestState = matchManager.getMatch(matchId);
+            if (
+              !latestState ||
+              latestState.status !== 'PLAYING' ||
+              latestState.activePlayer !== botConfig.symbol
+            ) {
+              return;
+            }
+
+            const move = await botConfig.ai.calculateMove(latestState, botConfig.symbol);
+
+            const newState = applyMove(latestState, move);
+            matchManager.updateMatch(matchId, newState);
+
+            io.to(matchId).emit('game_update', newState);
+
+            // Recursively call in case of multi-move rules (not used here but good practice)
+            this.handleStateUpdate(matchId, newState, io, matchManager);
+          } catch (e) {
+            console.error(`[BotManager] Error in match ${matchId}:`, e);
           }
-
-          const move = await botConfig.ai.calculateMove(latestState, botConfig.symbol);
-          
-          const newState = applyMove(latestState, move);
-          matchManager.updateMatch(matchId, newState);
-          
-          io.to(matchId).emit('game_update', newState);
-
-          // Recursively call in case of multi-move rules (not used here but good practice)
-          this.handleStateUpdate(matchId, newState, io, matchManager);
-        } catch (e) {
-          console.error(`[BotManager] Error in match ${matchId}:`, e);
-        }
-      }, 800 + Math.random() * 700); // 800ms - 1500ms delay
+        },
+        800 + Math.random() * 700,
+      ); // 800ms - 1500ms delay
     } else if (state.status === 'FINISHED') {
       // Cleanup bot after game is over
       this.removeBot(matchId);

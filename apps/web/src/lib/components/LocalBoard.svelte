@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { LocalBoard, PlayerSymbol } from 'shared';
+  import type { LocalBoard } from 'shared';
   import Cell from './Cell.svelte';
 
   export let board: LocalBoard;
@@ -10,20 +10,21 @@
   $: boardWinner = board.winner;
 </script>
 
-<div 
-  class="local-board" 
+<div
+  class="local-board"
   class:active={isActive}
   class:won-x={boardWinner === 'X'}
   class:won-o={boardWinner === 'O'}
   class:draw={boardWinner === 'DRAW'}
 >
   <div class="cells-grid">
-    {#each board.cells as row, y}
-      {#each row as cell, x}
-        <Cell 
+    {#each board.cells as row, y (y)}
+      {#each row as cell, x (x)}
+        <Cell
           value={cell.value}
           disabled={disabled || (isActive === false && isActive !== null)}
-          {x} {y}
+          {x}
+          {y}
           onClick={() => onMove(board.id, x, y)}
         />
       {/each}
@@ -34,18 +35,23 @@
     <div class="winner-overlay">
       {#if boardWinner === 'X'}
         <svg viewBox="0 0 24 24" class="large-mark x">
-          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path
+            d="M18 6L6 18M6 6l12 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
       {:else if boardWinner === 'O'}
         <svg viewBox="0 0 24 24" class="large-mark o">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none" />
         </svg>
       {/if}
     </div>
   {:else if boardWinner === 'DRAW'}
-     <div class="winner-overlay draw">
-        <span>DRAW</span>
-     </div>
+    <div class="winner-overlay draw">
+      <span>DRAW</span>
+    </div>
   {/if}
 </div>
 
@@ -53,7 +59,9 @@
   .local-board {
     position: relative;
     border: 3px solid transparent;
-    transition: border-color 0.3s, background 0.3s;
+    transition:
+      border-color 0.3s,
+      background 0.3s;
     background: #eee;
     padding: 2px;
   }
@@ -86,8 +94,14 @@
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .large-mark {
@@ -96,8 +110,12 @@
     opacity: 0.8;
   }
 
-  .x { color: #ef4444; }
-  .o { color: #3b82f6; }
+  .x {
+    color: #ef4444;
+  }
+  .o {
+    color: #3b82f6;
+  }
 
   .draw {
     background: rgba(200, 200, 200, 0.6);

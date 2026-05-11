@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { EasyBot, HardBot } from '../BotAI.js';
-import { createEmptyGameState, getValidMoves } from 'shared';
+import { EasyBotStrategy, HardBotStrategy, getValidMoves } from '../strategies.js';
+import { createEmptyGameState } from '../../engine/factories.js';
 
-describe('BotAI', () => {
+describe('Bot Strategies', () => {
   describe('getValidMoves', () => {
     it('returns 81 moves for a new game', () => {
       const state = createEmptyGameState();
@@ -32,9 +32,9 @@ describe('BotAI', () => {
     });
   });
 
-  describe('EasyBot', () => {
+  describe('EasyBotStrategy', () => {
     it('picks a random valid move', async () => {
-      const bot = new EasyBot();
+      const bot = new EasyBotStrategy();
       const state = createEmptyGameState();
       state.status = 'PLAYING';
       const move = await bot.calculateMove(state, 'X');
@@ -44,9 +44,9 @@ describe('BotAI', () => {
     });
   });
 
-  describe('HardBot', () => {
+  describe('HardBotStrategy', () => {
     it('takes a winning move if available', async () => {
-      const bot = new HardBot(1); // Depth 1: evaluate immediately after move
+      const bot = new HardBotStrategy(1); // Depth 1
       const state = createEmptyGameState();
       state.status = 'PLAYING';
 
@@ -62,7 +62,7 @@ describe('BotAI', () => {
     });
 
     it('blocks an opponent winning move', async () => {
-      const bot = new HardBot(2); // Depth 2: see opponent's next move
+      const bot = new HardBotStrategy(2); // Depth 2
       const state = createEmptyGameState();
       state.status = 'PLAYING';
       state.activePlayer = 'O';

@@ -22,14 +22,14 @@ function createSocketStore() {
     subscribe,
     connect: () => {
       if (browser) {
-        subscribe(s => s?.connect())();
+        subscribe((s) => s?.connect())();
       }
     },
     disconnect: () => {
       if (browser) {
-        subscribe(s => s?.disconnect())();
+        subscribe((s) => s?.disconnect())();
       }
-    }
+    },
   };
 }
 

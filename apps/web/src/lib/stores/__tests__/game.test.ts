@@ -23,12 +23,12 @@ describe('gameStore', () => {
     const state = createEmptyGameState();
     state.activePlayer = 'X';
     state.status = 'PLAYING';
-    
+
     gameStore.setState(state);
-    
+
     mySymbol.set('X');
     expect(get(isMyTurn)).toBe(true);
-    
+
     mySymbol.set('O');
     expect(get(isMyTurn)).toBe(false);
   });

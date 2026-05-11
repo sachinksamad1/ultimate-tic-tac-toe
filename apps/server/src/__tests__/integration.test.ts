@@ -86,7 +86,7 @@ describe('Integration Tests', () => {
 
     // Make a move
     const move = { playerId: '1', boardIndex: 0, cellX: 1, cellY: 1, timestamp: new Date() };
-    
+
     await new Promise<void>((resolve) => {
       client2.on('game_update', (state: any) => {
         if (state.localBoards[0].cells[1][1].value === 'X') {
@@ -120,7 +120,7 @@ describe('Integration Tests', () => {
 
     // Make human move
     const move = { playerId: '1', boardIndex: 4, cellX: 1, cellY: 1, timestamp: new Date() };
-    
+
     await new Promise<void>((resolve) => {
       let updates = 0;
       client.on('game_update', (newState: any) => {
