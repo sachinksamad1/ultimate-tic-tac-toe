@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { io, Socket } from 'socket.io-client';
+import { io, type Socket } from 'socket.io-client';
 import { browser } from '$app/environment';
 
 import { BACKEND_URL } from '$lib/constants';
