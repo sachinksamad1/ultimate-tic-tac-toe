@@ -27,14 +27,14 @@ A fullstack, real-time multiplayer implementation of the **Ultimate Tic-Tac-Toe*
 
 ## 🗺️ Project Roadmap
 
-| Phase  | Description                         | Status         |
-| ------ | ----------------------------------- | -------------- |
-| **01** | Infrastructure & Shared Foundations | ✅ Complete    |
-| **02** | Core Game Engine & Win Logic        | ✅ Complete    |
-| **03** | Multiplayer Backend (Socket.io)     | ✅ Complete    |
-| **04** | Frontend UI & Reactive Stores       | ✅ Complete    |
-| **05** | Single Player Bot Integration       | ✅ Complete    |
-| **06** | Deployment & Launch                 | 🚧 In Progress |
+| Phase  | Description                         | Status      |
+| ------ | ----------------------------------- | ----------- |
+| **01** | Infrastructure & Shared Foundations | ✅ Complete |
+| **02** | Core Game Engine & Win Logic        | ✅ Complete |
+| **03** | Multiplayer Backend (Socket.io)     | ✅ Complete |
+| **04** | Frontend UI & Reactive Stores       | ✅ Complete |
+| **05** | Single Player Bot Integration       | ✅ Complete |
+| **06** | Deployment & Launch                 | ✅ Complete |
 
 ## 📖 Documentation
 
