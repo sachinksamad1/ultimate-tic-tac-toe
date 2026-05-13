@@ -3,7 +3,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".svelte-kit/**"]
+      "outputs": ["dist/**", ".svelte-kit/**"],
+      "env": ["PUBLIC_BACKEND_URL"]
     },
     "lint": {},
     "typecheck": {
