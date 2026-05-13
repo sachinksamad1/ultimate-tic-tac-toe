@@ -17,6 +17,12 @@ dotenv.config();
 const app = express();
 const httpServer = createServer(app);
 
+// Request logger for debugging
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
+
 const io = new Server(httpServer, {
   cors: {
     origin: process.env.FRONTEND_URL || '*',
@@ -104,7 +110,7 @@ io.on('connection', (socket) => {
   registerMatchHandlers(io, socket, matchManager, botManager);
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 httpServer.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT} (0.0.0.0)`);
 });
